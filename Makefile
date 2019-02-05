@@ -24,7 +24,8 @@ all: 1.15.8
 test: test-1.15.8
 
 test-1.15.8:
-	if [ "`docker run jamesbrink/nginx cat /etc/alpine-release`" != "3.8.1" ]; then exit 1;fi
+	if [ "`docker run jamesbrink/nginx cat /etc/alpine-release`" != "3.8.2" ]; then exit 1;fi
+	docker run jamesbrink/nginx nginx -t
 
 clean:
 	rm -rf 1.15.8

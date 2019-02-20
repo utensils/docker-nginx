@@ -6,4 +6,5 @@
 
 ## About
 
-TBD
+This is a Docker container for Nginx + [mod_pagespeed](https://developers.google.com/speed/pagespeed/module/). This container build is nearly identitacl to the official nginx [docker image](https://hub.docker.com/_/nginx), the only difference is the inclusion of the pagespeed module.  
+

@@ -54,18 +54,18 @@ test: test-1.17.1 test-1.16.0 test-1.15.8
 
 .PHONY: test-1.17.1
 test-1.17.1:
-	if [ "`docker run utensils/nginx:1.17.1 cat /etc/alpine-release`" != "3.8.4" ]; then exit 1;fi
-	docker run utensils/nginx nginx -t
+	docker run -t utensils/nginx:1.17.1 nginx -V | grep "nginx/1.17.1"
+	docker run utensils/nginx:1.17.1 nginx -t
 
 .PHONY: test-1.16.0
-test-1.17.1:
-	if [ "`docker run utensils/nginx:1.16.0 cat /etc/alpine-release`" != "3.8.4" ]; then exit 1;fi
-	docker run utensils/nginx nginx -t
+test-1.16.0:
+	docker run -t utensils/nginx:1.16.0 nginx -V | grep "nginx/1.16.0"
+	docker run utensils/nginx:1.16.0 nginx -t
 
 .PHONY: test.15.8
 test-1.15.8:
-	if [ "`docker run utensils/nginx:1.15.8 cat /etc/alpine-release`" != "3.8.4" ]; then exit 1;fi
-	docker run utensils/nginx nginx -t
+	docker run -t utensils/nginx:1.15.8 nginx -V | grep "nginx/1.15.8"
+	docker run utensils/nginx:1.15.8 nginx -t
 
 .PHONY: push
 push:

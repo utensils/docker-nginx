@@ -1,7 +1,7 @@
 FROM alpine:3.8
 
 # Build arguments.
-ARG NGINX_VERSION="1.15.8"
+ARG NGINX_VERSION="1.16.0"
 ARG MOD_PAGESPEED_VERSION="v1.13.35.2"
 
 # Copy our build assets.

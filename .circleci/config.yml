@@ -1,24 +1,28 @@
 version: 2
 jobs:
   build:
-    working_directory: /app
     docker:
       - image: docker:17.05.0-ce-git
     steps:
       - checkout
       - setup_remote_docker
       - run:
-          name: Install dependencies
+          name: Install build dependencies
           command: |
             apk add --no-cache \
               bash \
               make \
               git
       - run:
-          name: Build application Docker image
+          name: Build Docker Images
           command: |
             make all
       - run:
-          name: Test Docker Image
+          name: Test Docker Images
           command: |
             make test
+      - run:
+          name: Push Images to Docker Hub
+          command: |
+            echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+            make push

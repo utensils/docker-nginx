@@ -48,6 +48,12 @@ test-1.15.8:
 	if [ "`docker run utensils/nginx:1.15.8 cat /etc/alpine-release`" != "3.8.4" ]; then exit 1;fi
 	docker run utensils/nginx nginx -t
 
+.PHONY: push
+push:
+	docker push $(NAME):1.17.1
+	docker push $(NAME):1.15.8
+	docker push $(NAME):latest
+
 .PHONY: clean
 clean:
 	rm -rf 1.17.1

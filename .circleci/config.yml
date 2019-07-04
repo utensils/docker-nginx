@@ -1,8 +1,8 @@
 version: 2
 jobs:
-  build:
+  1.15.8:
     docker:
-      - image: docker:17.05.0-ce-git
+      - image: docker:stable-git
     steps:
       - checkout
       - setup_remote_docker
@@ -16,13 +16,72 @@ jobs:
       - run:
           name: Build Docker Images
           command: |
-            make all
+            make 1.15.8
       - run:
           name: Test Docker Images
           command: |
-            make test
+            make test-1.15.8
       - run:
           name: Push Images to Docker Hub
           command: |
-            echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-            make push
+            echo "$DOCKERHUB_PASS" | docker login --username "$DOCKERHUB_USERNAME" --password-stdin
+            docker push utensils/nginx
+  1.16.0:
+    docker:
+      - image: docker:stable-git
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Install build dependencies
+          command: |
+            apk add --no-cache \
+              bash \
+              make \
+              git
+      - run:
+          name: Build Docker Images
+          command: |
+            make 1.16.0
+      - run:
+          name: Test Docker Images
+          command: |
+            make test-1.16.0
+      - run:
+          name: Push Images to Docker Hub
+          command: |
+            echo "$DOCKERHUB_PASS" | docker login --username "$DOCKERHUB_USERNAME" --password-stdin
+            docker push utensils/nginx
+  1.17.1:
+    docker:
+      - image: docker:stable-git
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Install build dependencies
+          command: |
+            apk add --no-cache \
+              bash \
+              make \
+              git
+      - run:
+          name: Build Docker Images
+          command: |
+            make 1.17.1
+      - run:
+          name: Test Docker Images
+          command: |
+            make test-1.17.1
+      - run:
+          name: Push Images to Docker Hub
+          command: |
+            echo "$DOCKERHUB_PASS" | docker login --username "$DOCKERHUB_USERNAME" --password-stdin
+            docker push utensils/nginx
+workflows:
+  version: 2
+  build:
+    jobs:
+        - 1.15.8
+        - 1.16.0
+        - 1.17.1

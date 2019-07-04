@@ -215,13 +215,14 @@ RUN set -xe; \
 ARG VCS_REF
 ARG BUILD_DATE
 LABEL maintainer="James Brink, brink.james@gmail.com" \
-    decription="NGINX" \
-    version="${NGINX_VERSION}" \
-    org.label-schema.name="nginx" \
     org.label-schema.build-date="${BUILD_DATE}" \
+    org.label-schema.decription="NGINX" \
+    org.label-schema.name="nginx" \
+    org.label-schema.schema-version="1.0.0-rc1" \
     org.label-schema.vcs-ref="${VCS_REF}" \
     org.label-schema.vcs-url="https://github.com/jamesbrink/docker-nginx" \
-    org.label-schema.schema-version="1.0.0-rc1"
+    org.label-schema.vendor="Utensils" \
+    org.label-schema.version="${NGINX_VERSION}"
 
 # Copy our runtime assets.
 COPY ./runtime-assets /

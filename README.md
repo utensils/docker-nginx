@@ -6,5 +6,28 @@
 
 ## About
 
-This is a Docker container for Nginx + [mod_pagespeed](https://developers.google.com/speed/pagespeed/module/). This container build is nearly identical to the official nginx [docker image](https://hub.docker.com/_/nginx), the only difference is the inclusion of the pagespeed module.  
+This is a Docker container for NGINX + [mod_pagespeed](https://developers.google.com/speed/pagespeed/module/). This container build is nearly identical to the official nginx [docker image](https://hub.docker.com/_/nginx), the only difference is the inclusion of the pagespeed module.  
 
+## Available Docker Images
+
+
+| Image Name            | Description                 |
+| --------------------- | --------------------------- |
+| utensils/nginx:latest | The latest release of nginx |
+| utensils/nginx:stable | The stable release of nginx |
+| utensils/nginx:1.17.1 | nginx 1.17.1                |
+| utensils/nginx:1.16.0 | nginx 1.16.0                |
+| utensils/nginx:1.15.8 | nginx 1.15.8                |
+
+
+## Building
+
+This build is driven by a `Makefile`, to build the latest image simply run:  
+```shell
+make
+```
+
+or to build all images/version run:  
+```shell
+make all
+```
